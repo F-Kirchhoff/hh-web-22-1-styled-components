@@ -5,10 +5,10 @@ import styled from "styled-components/macro";
 function App() {
   return (
     <AppContainer>
-      <h1>ClientBoard</h1>
-      <CardGrid>
+      <Title>ClientBoard</Title>
+      <CardGrid columns={3}>
         {USERS.map((user) => (
-          <Card user={user} />
+          <Card key={user.id} userData={user} />
         ))}
       </CardGrid>
     </AppContainer>
@@ -18,8 +18,6 @@ function App() {
 export default App;
 
 const AppContainer = styled.main`
-  background-color: #12121a;
-  color: #ccd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +25,13 @@ const AppContainer = styled.main`
 
 const CardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr); // 1fr 1fr 1fr 1fr
+  grid-template-columns: ${(props) => "repeat(" + props.columns + ",1fr)"};
   gap: 30px;
   padding: 20px;
+`;
+
+const Title = styled.h1`
+  border-top: 5px solid #ccd;
+  border-bottom: 5px solid #ccd;
+  border-radius: 5px;
 `;

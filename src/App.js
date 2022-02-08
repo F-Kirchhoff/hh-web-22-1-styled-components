@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Card from "./components/Card/Card";
+import { USERS } from "./db";
+import styled from "styled-components/macro";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <h1>ClientBoard</h1>
+      <CardGrid>
+        {USERS.map((user) => (
+          <Card user={user} />
+        ))}
+      </CardGrid>
+    </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = styled.main`
+  background-color: #12121a;
+  color: #ccd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); // 1fr 1fr 1fr 1fr
+  gap: 30px;
+  padding: 20px;
+`;
